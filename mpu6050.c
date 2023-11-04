@@ -37,7 +37,8 @@ void mpu_angle(mpu6050 *mpudata,float angles[3])
 	angles[2] = mpudata->angle[2];
 }
 
-void mpu_init(mpu6050 *mpudata,float k,float dt)// K-互补时加速度计比例 dt-积分时间
+// K-互补时加速度计比例 dt-积分时间
+void mpu_init(mpu6050 *mpudata,float k,float dt)
 {
 	mpudata->K = k;
 	mpudata->dt = dt;
