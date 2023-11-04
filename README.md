@@ -25,7 +25,7 @@ void mpu_angle(mpu6050 *mpudata,float angles[3]) :将换算出的姿态角存入
     mpu6050 mpu_0；
     float angle[3];
 
-然后通过mpu_init函数初始化mpu_0里的值
+然后通过mpu_init函数初始化mpu6050结构体类型成员里的值
 将mpu_update函数放入定时中断中周期执行
 需要读取姿态角时调用mpu_angle函数将数据存入angle[3]中
 
