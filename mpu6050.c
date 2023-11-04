@@ -11,7 +11,7 @@
 #define PI 3.1415926
 
 //更新互补姿态角 放在定时中断里固定周期执行 （周期默认0.01s，dt=0.01）定时器里设置周期
-void mpu_update(mpu6050 *mpudata,float acc[3],float groy[3],float K,float dt) // K-互补时加速度计比例 dt-积分时间
+void mpu_update(mpu6050 *mpudata,float acc[3],float groy[3]) 
 {
     //只通过加速度计数据得到姿态角1
 	mpudata->acc_angle[0] = atan2(acc[1],acc[2])*180/PI;
@@ -37,4 +37,29 @@ void mpu_angle(mpu6050 *mpudata,float angles[3])
 	angles[2] = mpudata->angle[2];
 }
 
+void mpu_init(mpu6050 *mpudata,float k,float dt)// K-互补时加速度计比例 dt-积分时间
+{
+	mpudata->K = k;
+	mpudata->dt = dt;
+
+	for (int i = 0; i < 2; i++)
+	{
+	    mpudata->acc_angle[i] = 0.0f;
+	}
+
+	for (int i = 0; i < 3; i++) 
+	{
+		mpudata->d_angle[i] = 0.0f;
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		mpudata->groy_angle[i] = 0.0f;
+	}
+
+	for (int i = 0; i < 3; i++) 
+	{
+		mpudata->angle[i] = 0.0f;
+	}
+}
 
