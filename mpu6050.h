@@ -16,8 +16,8 @@ typedef struct
 	float angle[3];       //互补姿态角 依次存入roll,pitch,yaw
 }mpu6050;
 
-
-void mpu_update(mpu6050 *mpudata,float acc[3],float groy[3],float K,float dt);
+void mpu_init(mpu6050 *mpudata,float k,float dt);
+void mpu_update(mpu6050 *mpudata,float acc[3],float groy[3]);
 void mpu_angle(mpu6050 *mpudata,float angles[3]);
 
 #endif /* INC_MPU6050_H_ */
